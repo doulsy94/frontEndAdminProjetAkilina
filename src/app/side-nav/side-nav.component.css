@@ -1,0 +1,45 @@
+.ad {
+    margin-top: 15px;
+    text-align: center;
+    background-color: white;
+    color: #00C4FF;
+    margin-top: 15px;
+    width: 209px;
+    margin-left: -13px;
+    color: black;
+}
+.ad .name{
+    text-align: center;
+}
+
+div#sidebar {
+    background-color: #093F6D;
+}
+a {
+    margin-bottom: 62px;
+}
+.name{
+    color: #00C4FF;
+}
+span.text.nav-text {
+    color: white;
+}
+i.bx.bxs-home.icon {
+    color: white;
+}
+i.bxs-user-circle.icon {
+    color: white;
+}
+i.bi-bell-fill.icon {
+    color: white;
+}
+i.bi-list-check.icon {
+    color: white;
+}
+.sidebar .li a {
+    color: var(--text-color);
+    background-color: #01B6ED;
+}
+.image-text {
+    margin-bottom: 30px;
+}

@@ -1,0 +1,40 @@
+<div class="wrap">
+  <app-side-nav></app-side-nav>
+  <div class="w" style="width: 100%">
+    <h2 class="text-center" style="margin-top: 10px">
+      Listes des idées partagés
+    </h2>
+    <div class="row conte">
+      <table class="table table-striped table-hover">
+        <thead class="thead">
+          <tr >
+            <th scope="col">#</th>
+            <th scope="col">Contexte</th>
+            <th scope="col">Contenu</th>
+            <th scope="col">Ministere</th>
+            <th scope="col">Utilisateurs</th>
+            <th scope="col">Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let idee of idee">
+            <th scope="row">{{idee.id_idee}}</th>
+            <td>{{idee.contexte}}</td>
+            <td>{{idee.contenu_idee}}</td>
+            <td>{{idee.ministere.libelle}}</td>
+            <td>{{idee.user.username}}</td>
+            <td>{{idee.date}}</td>
+            
+            <td>
+              <div class="col">
+                <i class="bi bi-trash3" style="color: red; font-size: 20px"></i>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

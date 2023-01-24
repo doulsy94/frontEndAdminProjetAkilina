@@ -1,0 +1,17 @@
+.wrap{
+    display: flex;
+}
+.w {
+    background-color: white;
+}
+.conte{
+    padding: 30px;
+}
+.thead{
+    background-color: #01B6ED;
+}
+.col {
+    margin: auto;
+    display: flex;
+    left: 10px;
+}

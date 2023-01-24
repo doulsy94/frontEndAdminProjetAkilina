@@ -1,0 +1,84 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+      <form
+        *ngIf="!isLoggedIn"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="emailOrNumero">Email ou Numero</label>
+          <input
+            type="text"
+            class="form-control"
+            name="emailOrNumero"
+            [(ngModel)]="form.emailOrNumero"
+            required
+            #emailOrNumero="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="emailOrNumero.errors && f.submitted"
+          >
+            Email ou Numero est obligatoire!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de Passe</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="password.errors && f.submitted"
+          >
+            <div *ngIf="password.errors['required']">Mot de passe est obligatoire</div>
+            <div *ngIf="password.errors['minlength']">
+                Le mot de passe doit avoir au moins 6 caractères
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">
+            Connexion
+          </button>
+        </div>
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && isLoginFailed"
+          >
+            Connexion échouer: {{ errorMessage }}
+          </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                 <a routerLink="/reset">
+                   Mot de Passe oublié
+                </a>
+            </div>
+        </div>
+      </form>
+  
+      <!--<div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+      </div>-->
+    </div>
+  </div>
+  
