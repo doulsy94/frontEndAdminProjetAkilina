@@ -43,3 +43,13 @@ i.bi-list-check.icon {
 .image-text {
     margin-bottom: 30px;
 }
+
+.button{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+    color: white; 
+    border-radius: 11PX;
+    height: 35px; 
+}

@@ -1,202 +1,222 @@
-
 <div class="wrap">
-  <app-side-nav></app-side-nav>
- 
-  <div class="w" style="width: 100%">
-    <h2 class="text-center" style="margin-top: 10px">Accueil</h2>
 
-    <div class="row conte">
-      <div class="col-md-3">
-        <div class="card">
-          <div class="cont">
-            <img
-              src="../../assets/images/ministere2.png"
-              height="50"
-              width="50"
-              style="text-align: center; padding-top: 5px"
-              alt=""
-              srcset=""
-            />
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">MINISTERE</h5>
-            <p class="card-text">{{nbMinis}}</p>
-          </div>
-        </div>
+<div class="container-fluid" style="overflow: hidden;">
+  <div class="row flex-nowrap">
+      <div  class="col-auto" 
+          style="height: 100vh; margin-left: -1%;">
+          <app-side-nav></app-side-nav>
+           <!-- </div> -->
       </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="cont">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
-              fill="currentColor"
-              class="bi bi-people"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
-              />
-            </svg>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">UTILISATEURS</h5>
-            <p class="card-text">{{nbUser}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card">
-          <div class="cont">
-            <img
-              src="../../assets/images/idee1.png"
-              height="50"
-              width="50"
-              style="text-align: center"
-              alt=""
-            />
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">IDEES</h5>
-            <p class="card-text">{{nbIdee}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card">
-          <div class="cont">
-            <img
-              src="../../assets/images/comment.png"
-              height="50"
-              width="50"
-              style="text-align: center"
-              alt=""
-            />
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">COMMENTAIRES</h5>
-            <p class="card-text">{{nbComment}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="row re"
-      style="width: 95%; margin-left: auto; margin-right: auto" >
-      <div class="col d-flex justify-content-end">
-        <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="ajout"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
-          style="height: 50px;"
-        >
-          AJOUTER MINISTERE
-        </button>
-
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">
-                  Création de Ministere
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+      <main class="col " style=" height: 100vh ; overflow: scroll; overflow-x: hidden;">
+        <div class="w">
+          <h2 class="text-center" style="margin-top: 10px">Accueil</h2>
+      
+          <div class="row conte">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="cont">
+                  <img
+                    src="../../assets/images/ministere2.png"
+                    height="50"
+                    width="50"
+                    style="text-align: center; padding-top: 5px"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">MINISTERE</h5>
+                  <p class="card-text">{{ nbMinis }}</p>
+                </div>
               </div>
-              <div class="modal-body">
-                <div class="form">
-                  <div class="input-box">
-                    <Label>Ajouter image *</Label>
-                    <input
-                      type="file"
-                      placeholder="Logo.jpg"
-                      id="logo"
-                      name="file"
-                      class="form-control"
-                      accept="image/png, image/jpeg, image/jpg"
-                      required
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="cont">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50"
+                    height="50"
+                    fill="currentColor"
+                    class="bi bi-people"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
                     />
-                  </div>
-                  <div class="input-box">
-                    <span> Libelle *</span>
-                    <input
-                      class="form-control"
-                      name="libelle"
-                      id="libelle"
-                      placeholder="Donner le nom du ministère"
-                    >
-                  </div>
-                  <div class="input-box">
-                    <span> Description *</span>
-                    <textarea
-                      class="form-control"
-                      name="description"
-                      id="details"
-                      placeholder="Donner une petite description du ministère"
-                    ></textarea>
+                  </svg>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">UTILISATEURS</h5>
+                  <p class="card-text">{{ nbUser }}</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-md-3">
+              <div class="card">
+                <div class="cont">
+                  <img
+                    src="../../assets/images/idee1.png"
+                    height="50"
+                    width="50"
+                    style="text-align: center"
+                    alt=""
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">IDEES</h5>
+                  <p class="card-text">{{ nbIdee }}</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-md-3">
+              <div class="card">
+                <div class="cont">
+                  <img
+                    src="../../assets/images/comment.png"
+                    height="50"
+                    width="50"
+                    style="text-align: center"
+                    alt=""
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">COMMENTAIRES</h5>
+                  <p class="card-text">{{ nbComment }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row re"
+            style="width: 95%; margin-left: auto; margin-right: auto"
+          >
+            <div class="col d-flex justify-content-end">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="ajout"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                style="height: 50px"
+              >
+                AJOUTER MINISTERE
+              </button>
+      
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        Création de Ministere
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form">
+                        <div class="input-box">
+                          <Label>Ajouter image *</Label>
+                          <input
+                            type="file"
+                            placeholder="Logo.jpg"
+                            id="logo"
+                            name="file"
+                            class="form-control"
+                            accept="image/png, image/jpeg, image/jpg"
+                            required
+                          />
+                        </div>
+                        <div class="input-box">
+                          <span> Libelle *</span>
+                          <input
+                            class="form-control"
+                            name="libelle"
+                            id="libelle"
+                            placeholder="Donner le nom du ministère"
+                          />
+                        </div>
+                        <div class="input-box">
+                          <span> Description *</span>
+                          <textarea
+                            class="form-control"
+                            name="description"
+                            id="details"
+                            placeholder="Donner une petite description du ministère"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Annuler
+                      </button>
+                      <button type="input" class="btn btn-primary">AJouter</button>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Annuler
-                </button>
-                <button type="input" class="btn btn-primary">AJouter</button>
+            </div>
+          </div>
+          <div
+            class=""
+            style="
+              width: 50%;
+              margin-left: auto;
+              margin-right: auto;
+              border-radius: 30px;
+            "
+          >
+            <form class="d-none d-md-flex ms-4">
+              <input
+                class="form-control border-0"
+                style="height: 50px !important; border-radius: 30px"
+                type="search"
+                placeholder="Rechercher"
+              />
+              <i class="bx bx-search icon" style="font-size: 45px"></i>
+            </form>
+          </div>
+          <div class="row conte">
+            <div class="col-md-4" *ngFor="let minist of ministere">
+              <!-- *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }" -->
+              <div class="card">
+                <div class="cont">
+                  <img
+                    src="{{ minist.image }}"
+                    height="45%"
+                    width="45%"
+                    style="text-align: center; padding-top: 5px"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title">{{ minist.libelle }}</h6>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="" style="width: 50%; margin-left: auto; margin-right: auto; border-radius: 30px;">
-      <form class="d-none d-md-flex ms-4">
-        <input class="form-control border-0  " style="height: 50px !important; border-radius:30px ;" type="search" placeholder="Rechercher">
-        <i class='bx bx-search icon ' style="font-size:45px"></i>
-      </form>
-    </div>
-    <div class="row conte">
-      <div class="col-md-4 " *ngFor="let minist of ministere">
-        <!-- *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }" -->
-        <div class="card">
-          <div class="cont">
-            <img
-              src={{minist.image}}
-              height="45%"
-              width="45%"
-              style="text-align: center; padding-top: 5px"
-              alt=""
-              srcset=""
-            />
-          </div>
-          <div class="card-body">
-            <h6 class="card-title"> {{minist.libelle}} </h6>  
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    
+      </main>
   </div>
 </div>

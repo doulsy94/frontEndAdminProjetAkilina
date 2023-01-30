@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'sidenav', component: SideNavComponent},
-  { path: 'sidenav', component: SideNavComponent},
+  
   { path: 'listeministere', component: ListeministereComponent},
   { path: 'listeidee', component: ListeideeComponent},
   { path: 'utilisateur', component: UtilisateurComponent},
