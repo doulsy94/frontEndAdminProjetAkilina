@@ -3,17 +3,19 @@ import { CommentaireService } from '../_services/commentaire.service';
 import { IdeeService } from '../_services/idee.service';
 import { MinistereService } from '../_services/ministere.service';
 import { UsersService } from '../_services/users.service';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-
 export class HomeComponent {
-    //VARIABLE CONTENANT LES INFORMATIONS DES MINISTERES RECUPERER
-  ministere: any;
+  menuBureau: boolean = true;
+  menuMobile: boolean = false;
 
+  //VARIABLE CONTENANT LES INFORMATIONS DES MINISTERES RECUPERER
+  ministere: any;
 
   //VARIABLE CONTENANT LES INFORMATIONS DES IDEES RECUPERER
   idee: any;
@@ -21,9 +23,8 @@ export class HomeComponent {
   //VARIABLE CONTENANT LES INFORMATIONS DES COMMENTAIRES PAR IDEES RECUPERER
   commentaire: any;
 
-   //VARIABLE CONTENANT LES INFORMATIONS DES COMMENTAIRES PAR IDEES RECUPERER
-   users: any;
-
+  //VARIABLE CONTENANT LES INFORMATIONS DES COMMENTAIRES PAR IDEES RECUPERER
+  users: any;
 
   //DECLARATION DES DIFFERENTS ATTRIBUT DE LA TABLE MINISTERE POUR MODIFIER
   libelle: any;
@@ -38,139 +39,159 @@ export class HomeComponent {
 
   //DECLARATION DES DIFFERENTS ATTRIBUT DE LA TABLE IDEE
   contexte: any;
-  contenu: any
+  contenu: any;
   nbrejaime: any;
   nbrejaimepas: any;
 
   //DECLARATION DES DIFFERENTS ATTRIBUT DE LA TABLE Commentaire
-  contenu_commentaire: any
+  contenu_commentaire: any;
 
   //VARIABLE PERMETTANT D'AFFIRMER LA VALIDATION
   isTrueP!: boolean;
   isNoTrueP!: boolean;
 
-  //VARIABLE PERMETTANT LA VALIDATION 
+  //VARIABLE PERMETTANT LA VALIDATION
   isNoTrueR!: boolean;
   isTrueR!: boolean;
 
-  constructor(private ministereService: MinistereService, private ideeService: IdeeService, private commentaireService: CommentaireService, private usersService: UsersService) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private ministereService: MinistereService,
+    private ideeService: IdeeService,
+    private commentaireService: CommentaireService,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
+    // ==================menu cacher en mobile a partir de 767px ==========
 
- //METHODE PERMETTANT DE RECUPERER LA LISTE DES MINISTERE
- this.ministereService.listerMinistere().subscribe(data => {
-  this.ministere = data;
-  this.nbMinis = this.ministere.length;
-  console.log(data);
-});
+    this.breakpointObserver
+      .observe(['(max-width: 767px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.menuBureau = false;
+          this.menuMobile = true;
+        } else {
+          this.menuBureau = true;
+          this.menuMobile = false;
+        }
+      });
 
-//METHODE PERMETTANT DE RECUPERER LA LISTE DES IDEES
-this.ideeService.listerIdee().subscribe(data => {
-  this.idee = data;
-  this.nbIdee = this.idee.length
-  console.log(data);
-});
+    //METHODE PERMETTANT DE RECUPERER LA LISTE DES MINISTERE
+    this.ministereService.listerMinistere().subscribe((data) => {
+      this.ministere = data;
+      this.nbMinis = this.ministere.length;
+      console.log(data);
+    });
 
-//METHODE PERMETTANT DE RECUPERER LA LISTE DES COMMENTAIRES
-this.commentaireService.listerCommentaire().subscribe(data => {
-  this.commentaire = data;
-  this.nbComment = this.commentaire.length
-  console.log(data);
-});
+    //METHODE PERMETTANT DE RECUPERER LA LISTE DES IDEES
+    this.ideeService.listerIdee().subscribe((data) => {
+      this.idee = data;
+      this.nbIdee = this.idee.length;
+      console.log(data);
+    });
 
-//METHODE PERMETTANT DE RECUPERER LA LISTE DES USERS
-this.usersService.listerUser().subscribe(data => {
-  this.users = data;
-  this.nbUser = this.users.length
-  console.log(data);
-});
+    //METHODE PERMETTANT DE RECUPERER LA LISTE DES COMMENTAIRES
+    this.commentaireService.listerCommentaire().subscribe((data) => {
+      this.commentaire = data;
+      this.nbComment = this.commentaire.length;
+      console.log(data);
+    });
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict'
+    //METHODE PERMETTANT DE RECUPERER LA LISTE DES USERS
+    this.usersService.listerUser().subscribe((data) => {
+      this.users = data;
+      this.nbUser = this.users.length;
+      console.log(data);
+    });
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll<HTMLInputElement>('.needs-validation')
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+      'use strict';
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms =
+        document.querySelectorAll<HTMLInputElement>('.needs-validation');
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
+      // Loop over them and prevent submission
+      Array.from(forms).forEach((form) => {
+        form.addEventListener(
+          'submit',
+          (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
 
-}
-/***************************** PARTIE MINISTERE *************************************/
+            form.classList.add('was-validated');
+          },
+          false
+        );
+      });
+    })();
+  }
+  /***************************** PARTIE MINISTERE *************************************/
 
   //METHODE PERMETTANT DE RECUPERER L'IMAGE DU MINISTERE
   recuperationImageMinistere(event: any) {
-
-    this.image = event.target["files"][0];
-    console.log(this.image)
-
+    this.image = event.target['files'][0];
+    console.log(this.image);
   }
 
-   //METHODE PERMETTANT D'ENVOYER LES VALEUR DU MINISTERE AU SERVICE
-   ajouterMinistere() {
-
+  //METHODE PERMETTANT D'ENVOYER LES VALEUR DU MINISTERE AU SERVICE
+  ajouterMinistere() {
     console.log(this.libelle);
 
-    this.ministereService.ajouterMinistere(
-      this.image,
-      this.libelle,
-      this.description,
-    ).subscribe({
-      next: data => {
-        console.log(data);
-        this.isTrueR = true
-        this.isNoTrueR = false
-      this.alerte();
-      //this.reloadPage();
-      }, error: err => {
-        this.isNoTrueR = true
-        this.isTrueR = false
-      }
-    })
-
+    this.ministereService
+      .ajouterMinistere(this.image, this.libelle, this.description)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.isTrueR = true;
+          this.isNoTrueR = false;
+          this.alerte();
+          //this.reloadPage();
+        },
+        error: (err) => {
+          this.isNoTrueR = true;
+          this.isTrueR = false;
+        },
+      });
   }
 
   /********************** METHODE PERMETTANT DE SUPPRIMER UN MINISTERE  *****************/
-  suprimerMinistere(id_ministere: any, id_user:any) {
+  suprimerMinistere(id_ministere: any, id_user: any) {
     this.ministereService.suprimerMinistere(id_ministere, id_user).subscribe({
-      next: data => {
+      next: (data) => {
         console.log(data);
-       this.alerte();
-      }, error: err => {
+        this.alerte();
+      },
+      error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
-//GET Ministere
-getAllMinistere() {
-  this.ministereService.listerMinistere().subscribe(data => {
-    this.ministere = data;
-    console.log(data.length);
-  })
-}
-
-alerte(): void {
-  setTimeout(() => {
-    this.getAllMinistere();
-  }, 1000);
-}
-
- //METHODE PERMETTANT D'ACTUALISER LA PAGE UNE FOIS LES DONNER AJOUTER
- reloadPage(): void {
-  window.location.reload();
-}
-
-
+  //GET Ministere
+  getAllMinistere() {
+    this.ministereService.listerMinistere().subscribe((data) => {
+      this.ministere = data;
+      console.log(data.length);
+    });
   }
 
+  alerte(): void {
+    setTimeout(() => {
+      this.getAllMinistere();
+    }, 1000);
+  }
+
+  //METHODE PERMETTANT D'ACTUALISER LA PAGE UNE FOIS LES DONNER AJOUTER
+  reloadPage(): void {
+    window.location.reload();
+  }
+  afficheMenuMobile() {
+    this.menuBureau = true;
+    this.menuMobile = false;
+  }
+}

@@ -1,65 +1,79 @@
 <div class="wrap">
-  <app-side-nav></app-side-nav>
-  <div class="w" style="width: 100%">
-    <h2 class="text-center" style="margin-top: 10px">Les ministères</h2>
-    <div class="row conte">
-      <div
-        class=""
-        style="
-          width: 50%;
-          margin-left: auto;
-          margin-right: auto;
-          border-radius: 30px;
-        "
-      >
-        <form class="d-none d-md-flex ms-4">
-          <input
-            class="form-control border-0"
-            style="height: 50px !important; border-radius: 30px"
-            type="search"
-            placeholder="Rechercher"
-          />
-          <i class="bx bx-search icon" style="font-size: 45px"></i>
-        </form>
+  <div class="container-fluid" style="overflow: hidden">
+    <div class="row flex-nowrap">
+      <div class="col-auto" style="height: 100vh; margin-left: -1%" *ngIf="menuBureau">
+        <app-side-nav></app-side-nav>
+        <!-- </div> -->
       </div>
-    </div>
-    <div class="row conte">
-      <div class="col-md-3" *ngFor="let minist of ministere">
-        <!-- *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }" -->
-        <div class="card">
-          <div class="cont">
-            <img
-              src={{minist.image}}
-              height="45%"
-              width="45%"
-              style="text-align: center; padding-top: 5px"
-              alt=""
-            />
+      <main
+        class="col"
+        style="height: 100vh; overflow: scroll !important; overflow-x: hidden"
+        >
+        <div class="w" style="width: 100%">
+          <i class="bi bi-list" (click)=" afficheMenuMobile()"></i>
+          <h2 class="text-center" style="margin-top: 10px">Les ministères</h2>
+          <div class="row conte">
+            <div
+              class=""
+              style="
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 30px;
+              "
+            >
+              <form class="d-none d-md-flex ms-4">
+                <input
+                  class="form-control border-0"
+                  style="height: 50px !important; border-radius: 30px"
+                  type="search"
+                  placeholder="Rechercher"
+                />
+                <i class="bx bx-search icon" style="font-size: 45px"></i>
+              </form>
+            </div>
           </div>
-          <div class="card-body">
-            <h6 class="card-title">{{minist.libelle}}</h6>
-            <div class="ic d-flex justify-content-center">
-              <div class="m-2">
-                <i
-                  class="bi bi-pencil-fill"
-                  style="color: rgb(149, 148, 161); font-size: 20px"
-                >
-                </i>
-              </div>
-              <div class="m-2">
-                <i
-                  class="bi bi-eye-fill"
-                  style="color: rgb(34, 158, 142); font-size: 20px"
-                >
-                </i>
-              </div>
-              <div class="m-2">
-                <i class="bi bi-trash3" style="color: red; font-size: 20px"></i>
+          <div class="row conte">
+            <div class="col-md-3" *ngFor="let minist of ministere">
+              <!-- *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }" -->
+              <div class="card">
+                <div class="cont">
+                  <img
+                    src="{{ minist.image }}"
+                    height="45%"
+                    width="45%"
+                    style="text-align: center; padding-top: 5px"
+                    alt=""
+                  />
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title">{{ minist.libelle }}</h6>
+                  <div class="ic d-flex justify-content-center">
+                    <div class="m-2">
+                      <i
+                        class="bi bi-pencil-fill"
+                        style="color: rgb(149, 148, 161); font-size: 20px"
+                      >
+                      </i>
+                    </div>
+                    <div class="m-2">
+                      <i
+                        class="bi bi-eye-fill"
+                        style="color: rgb(34, 158, 142); font-size: 20px"
+                      >
+                      </i>
+                    </div>
+                    <div class="m-2">
+                      <i class="bi bi-trash3" style="color: red; font-size: 20px"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </main>
       </div>
     </div>
   </div>
-</div>
+  

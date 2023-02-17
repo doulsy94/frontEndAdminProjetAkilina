@@ -1,3 +1,4 @@
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { CommentaireService } from '../_services/commentaire.service';
 import { IdeeService } from '../_services/idee.service';
@@ -10,6 +11,9 @@ import { UsersService } from '../_services/users.service';
   styleUrls: ['./listeministere.component.css']
 })
 export class ListeministereComponent {
+
+  menuBureau: boolean = true;
+  menuMobile: boolean = false;
 
   //VARIABLE CONTENANT LES INFORMATIONS DES MINISTERES RECUPERER
   ministere: any;
@@ -29,9 +33,24 @@ export class ListeministereComponent {
   isNoTrueR!: boolean;
   isTrueR!: boolean;
 
-  constructor(private ministereService: MinistereService, private ideeService: IdeeService, private commentaireService: CommentaireService, private usersService: UsersService) { }
+  constructor(   private breakpointObserver: BreakpointObserver,private ministereService: MinistereService, private ideeService: IdeeService, private commentaireService: CommentaireService, private usersService: UsersService) { }
 
   ngOnInit(): void {
+
+    
+        // ==================menu cacher en mobile a partir de 767px ==========
+
+        this.breakpointObserver
+        .observe(['(max-width: 767px)'])
+        .subscribe((state: BreakpointState) => {
+          if (state.matches) {
+            this.menuBureau = false;
+            this.menuMobile = true;
+          } else {
+            this.menuBureau = true;
+            this.menuMobile = false;
+          }
+        });
 
  //METHODE PERMETTANT DE RECUPERER LA LISTE DES MINISTERE
  this.ministereService.listerMinistere().subscribe(data => {
@@ -74,6 +93,11 @@ export class ListeministereComponent {
  //METHODE PERMETTANT D'ACTUALISER LA PAGE UNE FOIS LES DONNER AJOUTER
  reloadPage(): void {
   window.location.reload();
+}
+
+afficheMenuMobile() {
+  this.menuBureau = true;
+  this.menuMobile = false;
 }
 
 

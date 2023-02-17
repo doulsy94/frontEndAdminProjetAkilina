@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IdeeService } from '../_services/idee.service';
 import { UsersService } from '../_services/users.service';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-listeidee',
@@ -9,6 +10,9 @@ import { UsersService } from '../_services/users.service';
 })
 export class ListeideeComponent {
 
+  menuBureau: boolean = true;
+  menuMobile: boolean = false;
+  
   //VARIABLE CONTENANT LES INFORMATIONS DES IDEES RECUPERER
   idee: any;
 
@@ -36,9 +40,23 @@ export class ListeideeComponent {
    isNoTrueR!: boolean;
    isTrueR!: boolean;
 
-   constructor(private ideeService: IdeeService, private usersService: UsersService) { }
+   constructor(   private breakpointObserver: BreakpointObserver, private ideeService: IdeeService, private usersService: UsersService) { }
 
    ngOnInit(): void {
+
+        // ==================menu cacher en mobile a partir de 767px ==========
+
+        this.breakpointObserver
+        .observe(['(max-width: 767px)'])
+        .subscribe((state: BreakpointState) => {
+          if (state.matches) {
+            this.menuBureau = false;
+            this.menuMobile = true;
+          } else {
+            this.menuBureau = true;
+            this.menuMobile = false;
+          }
+        });
 
     //METHODE PERMETTANT DE RECUPERER LA LISTE DES IDEES
     this.ideeService.listerIdee().subscribe(data => {
@@ -52,6 +70,9 @@ export class ListeideeComponent {
       console.log(data);
     });
    }
- 
+   afficheMenuMobile() {
+    this.menuBureau = true;
+    this.menuMobile = false;
+  }
 
 }

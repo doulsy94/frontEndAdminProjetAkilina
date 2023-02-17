@@ -3,12 +3,14 @@
 <div class="container-fluid" style="overflow: hidden;">
   <div class="row flex-nowrap">
       <div  class="col-auto" 
-          style="height: 100vh; margin-left: -1%;">
+          style="height: 100vh; margin-left: -1%;" *ngIf="menuBureau">
+          
           <app-side-nav></app-side-nav>
            <!-- </div> -->
       </div>
       <main class="col " style=" height: 100vh ; overflow: scroll; overflow-x: hidden;">
         <div class="w">
+          <i class="bi bi-list" (click)=" afficheMenuMobile()"></i>
           <h2 class="text-center" style="margin-top: 10px">Accueil</h2>
       
           <div class="row conte">

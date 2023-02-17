@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../_services/users.service';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+
 
 @Component({
   selector: 'app-utilisateur',
@@ -7,7 +9,8 @@ import { UsersService } from '../_services/users.service';
   styleUrls: ['./utilisateur.component.css']
 })
 export class UtilisateurComponent {
-
+  menuBureau: boolean = true;
+  menuMobile: boolean = false;
   
   //VARIABLE CONTENANT LES INFORMATIONS DES COMMENTAIRES PAR IDEES RECUPERER
   users: any;
@@ -26,9 +29,23 @@ export class UtilisateurComponent {
   isNoTrueR!: boolean;
   isTrueR!: boolean;
 
-  constructor(private usersService: UsersService) { }
+  constructor(   private breakpointObserver: BreakpointObserver, private usersService: UsersService) { }
 
   ngOnInit(): void {
+
+       // ==================menu cacher en mobile a partir de 767px ==========
+
+       this.breakpointObserver
+       .observe(['(max-width: 767px)'])
+       .subscribe((state: BreakpointState) => {
+         if (state.matches) {
+           this.menuBureau = false;
+           this.menuMobile = true;
+         } else {
+           this.menuBureau = true;
+           this.menuMobile = false;
+         }
+       });
 
 //METHODE PERMETTANT DE RECUPERER LA LISTE DES USERS
   this.usersService.listerUser().subscribe(data => {
@@ -36,6 +53,9 @@ export class UtilisateurComponent {
   console.log(data);
 });
 
-
+}
+afficheMenuMobile() {
+  this.menuBureau = true;
+  this.menuMobile = false;
 }
 }
